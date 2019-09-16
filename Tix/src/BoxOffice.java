@@ -53,8 +53,13 @@ public class BoxOffice {
 	
 	//Write printInventory here//
 	public void printInventory() {
+		/*
 		for(int indx = 0; indx < inventory.length; indx++) {
-			System.out.println(inventory[indx]);
+			//inventory[indx].printTicket();
+		}
+		*/
+		for(Ticket tick: inventory) {
+			tick.printTicket();
 		}
 		//System.out.println(inventory[0]);
 	}
@@ -67,6 +72,9 @@ public class BoxOffice {
 	 */
 	
 	//Write getTicket here//
+	public Ticket getTicket(int ticketNum) {
+		return inventory[ticketNum];
+	}
 	
 	/*
 	 * This main method creates a BoxOffice,
@@ -79,7 +87,7 @@ public class BoxOffice {
 		flynnBox.printInventory();
 		
 		//Get, then print, the ticket at index 3 (should be seat A-4)
-		//flynnBox.getTicket(3).printTicket();
+		flynnBox.getTicket(3).printTicket();
 	}
 	
 	
