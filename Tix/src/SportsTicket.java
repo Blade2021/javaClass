@@ -1,10 +1,18 @@
 
 public class SportsTicket extends Ticket{
 	private int gameNumber;
+	private String awayTeam;
 	
 	public SportsTicket(String eventName, double price, char row, int seatNumber, int gameNumber) {
 		super(eventName, price, row, seatNumber);
 		this.gameNumber = gameNumber;
+		this.awayTeam = "Unknown";
+	}
+	
+	public SportsTicket(String eventName, double price, char row, int seatNumber, int gameNumber, String awayTeam) {
+		super(eventName, price, row, seatNumber);
+		this.gameNumber = gameNumber;
+		this.awayTeam = awayTeam;
 	}
 
 	public int getGameNumber() {
@@ -24,6 +32,10 @@ public class SportsTicket extends Ticket{
 	    System.out.println("$" + getPrice());
 	    System.out.println("Seat " + this.getRow() + "-" + this.getSeatNumber());
 	    System.out.println("*********");
+	    System.out.println(getPromoCode());
 	}
 	
+	public String getPromoCode() {
+		return this.awayTeam.toUpperCase() + this.getDate(1);
+	}
 }

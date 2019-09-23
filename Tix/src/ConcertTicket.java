@@ -7,7 +7,8 @@ public class ConcertTicket extends Ticket{
 		super(eventName, price, row, seatNumber);
 		this.genre = genre;
 	}
-
+	
+	
 	public String getGenre() {
 		return genre;
 	}
@@ -25,5 +26,10 @@ public class ConcertTicket extends Ticket{
 	    System.out.println("$" + getPrice());
 	    System.out.println("Seat " + this.getRow() + "-" + this.getSeatNumber());
 	    System.out.println("*********");
+	    System.out.println(getPromoCode());
+	}
+	
+	public String getPromoCode() {
+		return this.getEventName().substring(0, 4) + " " + this.getDate(0);
 	}
 }

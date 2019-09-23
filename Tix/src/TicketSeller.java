@@ -1,6 +1,6 @@
 
 public class TicketSeller{
-	
+	/*
 	public static void main(String[] args) {
 		int seatNum = 2;
 		
@@ -10,5 +10,5 @@ public class TicketSeller{
 			seatNum += 2;
 		}
 	}
-	
+	*/
 }

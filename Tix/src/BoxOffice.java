@@ -32,14 +32,30 @@ public class BoxOffice {
 	 * The fillInventory method is prewritten for you. Answer each question 
 	 * from Canvas in a separate text file.
 	 */
-	public void fillInventory(String eventName, double price) {
+	
+	public void fillInventorySports(String eventName, double price, int gameNumber, String awayTeam,int year, int day, int month) {
 		int t=0;
 		
 		//65 is the decimal value of uppercase A
 		
 		for(int row = 65; row < 65+numRows; row++) {
 			for(int seat = 1; seat <= seatsPerRow; seat++) {
-				inventory[t] = new Ticket(eventName, price, (char)row, seat);
+				inventory[t] = new SportsTicket(eventName, price, (char)row, seat, gameNumber, awayTeam);
+				inventory[t].setDate(year, day, month);
+				t++;	
+			}
+		}
+	}
+	
+	public void fillInventoryConcert(String eventName, double price, String genre, int year, int day, int month) {
+		int t=0;
+		
+		//65 is the decimal value of uppercase A
+		
+		for(int row = 65; row < 65+numRows; row++) {
+			for(int seat = 1; seat <= seatsPerRow; seat++) {
+				inventory[t] = new ConcertTicket(eventName, price, (char)row, seat, genre);
+				inventory[t].setDate(year, day, month);
 				t++;	
 			}
 		}
@@ -83,11 +99,15 @@ public class BoxOffice {
 	 */
 	public static void main(String[] args) {
 		BoxOffice flynnBox = new BoxOffice(5, 12);
-		flynnBox.fillInventory("VT Symphony", 45.25);
+		flynnBox.fillInventoryConcert("VT Symphony", 45.25, "Rock", 2020, 20, 2);
 		flynnBox.printInventory();
 		
 		//Get, then print, the ticket at index 3 (should be seat A-4)
 		flynnBox.getTicket(3).printTicket();
+		
+		BoxOffice giants = new BoxOffice(3,40);
+		giants.fillInventorySports("Giants Game", 23.22, 17, "Giants", 2019, 14, 4);
+		giants.printInventory();
 	}
 	
 	

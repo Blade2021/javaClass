@@ -2,11 +2,15 @@
  * A class that constructs tickets for a theater
  * @author Charlie MacFadyen
  */
-public class Ticket {
+public abstract class  Ticket {
 	private String eventName;
 	private double price;
 	private char row;
 	private int seatNumber;
+	private int month;
+	private int day;
+	private int year;
+	
 
 	public Ticket(String eventName, double price, char row, int seatNumber) {
 		this.eventName = eventName;
@@ -16,7 +20,7 @@ public class Ticket {
 	}
 
 	public void printTicket() {
-
+		System.out.println(this.getDate());
 		System.out.println("*********");
 		System.out.println("TICKET");
 		System.out.println(eventName);
@@ -56,8 +60,30 @@ public class Ticket {
 	public void setSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
 	}
-
-
+	
+	public int[] getDate() {
+		int [] date = new int[3];
+		date[0] = this.month;
+		date[1] = this.day;
+		date[2] = this.year;
+		return date;
+	}
+	
+	public int getDate(int index) {
+		int [] date = new int[3];
+		date[0] = this.month;
+		date[1] = this.day;
+		date[2] = this.year;
+		return date[index];
+	}
+	
+	public void setDate(int year, int day, int month) {
+		this.year = year;
+		this.day = day;
+		this.month = month;
+	}
+	
+	public abstract String getPromoCode();
 
 
 }
