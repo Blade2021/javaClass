@@ -19,7 +19,7 @@ public class ConcertTicket extends Ticket{
 	
 	public void printTicket() {
 		System.out.println("*********");
-		System.out.println(this.genre + "Concert Series");
+		System.out.println(this.genre + " Concert Series");
 		System.out.println("*********");
 	    System.out.println("TICKET");
 	    System.out.println(this.getEventName());
@@ -30,6 +30,6 @@ public class ConcertTicket extends Ticket{
 	}
 	
 	public String getPromoCode() {
-		return this.getEventName().substring(0, 4) + " " + this.getDate(0);
+		return this.getEventName().substring(0, 4) + this.getDate(0);
 	}
 }
