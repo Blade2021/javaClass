@@ -108,6 +108,10 @@ public class BoxOffice {
 		BoxOffice giants = new BoxOffice(3,40);
 		giants.fillInventorySports("Giants Game", 23.22, 17, "Giants", 2019, 14, 4);
 		giants.printInventory();
+		
+		String s = "I love taking quizzes";
+		System.out.println(s.substring(3,6));
+		
 	}
 	
 	
