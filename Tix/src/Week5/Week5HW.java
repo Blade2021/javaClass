@@ -26,7 +26,7 @@ public class Week5HW {
 		try {
 			printJerseyAtIndex(3);
 		}
-		catch(NullPointerException e) {
+		catch(IndexOutOfBoundsException e) {
 			System.out.println("Error in data");
 		}
 		catch(Exception e) {
@@ -55,7 +55,15 @@ public class Week5HW {
 		index++;
 		
 		System.out.println("Enter another? y/n");
-		answer = input.nextLine();
+		try {
+			answer = input.nextLine();
+		}
+		catch(Exception e) {
+			System.out.println("Something went wrong");
+		}
+		finally {
+			input.close();
+		}
 		
 		} while((index < jerseyNumbers.length));
 	}

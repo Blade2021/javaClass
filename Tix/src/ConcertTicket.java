@@ -21,12 +21,6 @@ public class ConcertTicket extends Ticket{
 		System.out.println("*********");
 		System.out.println(this.genre + " Concert Series");
 		System.out.println("*********");
-		
-		super.printTicket();
-		
-		System.out.println("*********");
-		System.out.println(this.genre + " Concert Series");
-		System.out.println("*********");
 	    System.out.println("TICKET");
 	    System.out.println(this.getEventName());
 	    System.out.println("$" + getPrice());
