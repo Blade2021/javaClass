@@ -44,6 +44,7 @@ public class MusicStore {
 
 	// Print ALL inventory
 	public void printInstrument() {
+		System.out.println("\n\nPRINTING INVENTORY:\n");
 		for(int indx = 0; indx < inventory.length; indx++) {
 			try {
 				inventory[indx].printInfo();
@@ -54,22 +55,72 @@ public class MusicStore {
 			}
 		}
 	}
-
-	public void addInventory(int type) {
-		String cont = "yes";
-		int indx = 0;
-
-		do {
-			Scanner input = new Scanner(System.in);
-			System.out.println("What type of instrument are you adding?\nGuitar or Elecric Guitar");
-		} while((indx < inventory.length));
-	}
-
-
-
+	
 	//Call printInfo method from appropriate class
 	public void printInstrument(int SerialNumber) {
-		inventory[SerialNumber].printInfo();
+		for(int indx = 0;indx < inventory.length; indx++) {
+			try {
+				if(inventory[indx].getSerialNumber() == SerialNumber) {
+					inventory[indx].printInfo();
+				}
+			}
+			catch(Exception NullPointerException) {
+				// do nothing
+			}
+		}
 	}
 
+	public void addInventory() {
+		int indx = 0;
+		String leftovers;		
+		
+		Scanner input = new Scanner(System.in);
+		do {
+			//Scanner input = new Scanner(System.in);
+			System.out.println("What type of instrument are you adding?\n1 - Guitar or 2 - Elecric Guitar 0 - Exit");
+			try {
+				int inputType = input.nextInt();
+				leftovers = input.nextLine();
+				
+				if((inputType == 1) || (inputType == 2)) {
+					System.out.println("Input guitar brand:");
+					String inputBrand = input.nextLine();
+					
+					System.out.println("Input guitar color:");
+					String inputColor = input.nextLine();
+					
+					System.out.println("Input guitar string count: (INTEGER)");
+					int inputStringCount = input.nextInt();
+					leftovers = input.nextLine();
+					
+					if(inputType == 2) {
+						System.out.println("Input guitar pickup type: [CHAR]");
+						char inputPickupType = input.nextLine().charAt(0);
+						
+						inventory[indx] = new ElectricGuitar(indx+100,inputBrand,inputColor,inputStringCount,inputPickupType);
+					} else {
+						inventory[indx] = new Guitar(indx+100,inputBrand,inputColor,inputStringCount);
+					}
+					
+					indx++;
+				}
+				
+				if(inputType == 0) {
+					break;
+				}
+			}
+			catch(Exception InputMismatchException){
+				System.out.println("Incorrect value [Exiting Function]");
+				break;
+			}
+		} while((indx < inventory.length));
+		
+		input.close();
+	}
+	/*
+	public void setAvailable(int SerialNumber) {
+		try {
+			inventory[]
+		}
+	}*/
 }
