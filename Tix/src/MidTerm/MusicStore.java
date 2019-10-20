@@ -43,7 +43,7 @@ public class MusicStore {
 	}
 
 	// Print ALL inventory
-	public void printInstrument() {
+	public void printInstrumentALL() {
 		System.out.println("\n\nPRINTING INVENTORY:\n");
 		for(int indx = 0; indx < inventory.length; indx++) {
 			try {
@@ -54,6 +54,22 @@ public class MusicStore {
 				System.out.println("No instrument found at inventory address[" +indx +"]");
 			}
 		}
+	}
+	
+	public void printInstrument() {
+
+		Scanner input = new Scanner(System.in);
+		try {
+			System.out.println("Enter serial number of instrument to print");
+			int inputSerialNumber = input.nextInt();
+			input.nextLine();
+			
+			printInstrument(inputSerialNumber);
+			
+		}
+		catch(Exception InputMismatchException) {
+			System.out.println("Incorrect value");
+		}		
 	}
 	
 	//Call printInfo method from appropriate class
@@ -74,8 +90,7 @@ public class MusicStore {
 	}
 
 	public void addInventory() {
-		int indx = 0;
-		String leftovers;		
+		int indx = 0;	
 		
 		Scanner input = new Scanner(System.in);
 		do {
@@ -83,7 +98,7 @@ public class MusicStore {
 			System.out.println("What type of instrument are you adding?\n1 - Guitar or 2 - Elecric Guitar 0 - Exit");
 			try {
 				int inputType = input.nextInt();
-				leftovers = input.nextLine();
+				input.nextLine();
 				
 				if((inputType == 1) || (inputType == 2)) {
 					System.out.println("Input guitar brand:");
@@ -94,7 +109,7 @@ public class MusicStore {
 					
 					System.out.println("Input guitar string count: (INTEGER)");
 					int inputStringCount = input.nextInt();
-					leftovers = input.nextLine();
+					input.nextLine();
 					
 					if(inputType == 2) {
 						System.out.println("Input guitar pickup type: [CHAR]");
@@ -118,9 +133,34 @@ public class MusicStore {
 			}
 		} while((indx < inventory.length));
 		
-		input.close();
+		//input.close();
 	}
 	
+	public void setAvailable() {
+		Scanner input = new Scanner(System.in);
+		try {
+			System.out.println("Enter serial number of instrument to change");
+			int inputSerialNumber = input.nextInt();
+			input.nextLine();
+			
+			System.out.println("Input status of instrument: (0 = unavailable  1 = available)");
+			int inputStatus = input.nextInt();
+			input.nextLine();
+			
+			boolean status = false;
+			if(inputStatus >= 1) {
+				status = true;
+			}
+			
+			setAvailable(inputSerialNumber,status);
+		}
+		catch(Exception InputMismatchException) {
+			System.out.println("Incorrect value");
+		}
+		finally {
+			//input.close();
+		}
+	}
 	
 	public void setAvailable(int SerialNumber, boolean status) {
 		/*
@@ -137,5 +177,5 @@ public class MusicStore {
 			}
 		}
 	}
-
+	
 }

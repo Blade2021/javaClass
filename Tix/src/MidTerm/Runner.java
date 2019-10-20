@@ -10,9 +10,10 @@ public class Runner {
 		//Bennington.addInventory();
 		
 		Bennington.printInstrument();
+		Bennington.setAvailable();
+		Bennington.printInstrument();
 		
-		Bennington.setAvailable(103, false);
-		Bennington.printInstrument(103);
+		
 		Bennington.setAvailable(103, true);
 		Bennington.printInstrument(103);
 	}
