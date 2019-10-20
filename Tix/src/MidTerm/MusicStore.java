@@ -1,6 +1,7 @@
 package MidTerm;
 
 import java.util.Scanner;
+import java.io.*;
 
 public class MusicStore {
 
@@ -176,6 +177,36 @@ public class MusicStore {
 				// do nothing
 			}
 		}
+	}
+	
+	public void writeFile() {
+		try {
+			File writeFile = new File("Inventory.txt");
+			FileWriter fw = new FileWriter(writeFile);
+			BufferedWriter bw = new BufferedWriter(fw);
+			
+			String writeLine = "line";
+			for(int indx = 0; indx < inventory.length; indx++) {
+				if(inventory[indx] != null) {
+					bw.write("Serial: "+inventory[indx].getSerialNumber());
+					bw.newLine();
+					bw.write("Type: "+inventory[indx].getType());
+					bw.newLine();
+					bw.write("Brand: "+inventory[indx].getBrand());
+					bw.newLine();
+					bw.newLine();
+				}
+			}
+			
+			bw.close();
+			
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		/*catch(Exception e) {
+			System.out.println("Something terrible went wrong :( ");
+		}*/
 	}
 	
 }

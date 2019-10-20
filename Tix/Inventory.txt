@@ -1,0 +1,28 @@
+Serial: 100
+Type: Guitar
+Brand: Taylor
+
+Serial: 101
+Type: Guitar
+Brand: Taylor
+
+Serial: 102
+Type: Guitar
+Brand: Taylor
+
+Serial: 103
+Type: Electric Guitar
+Brand: Taylor
+
+Serial: 104
+Type: Electric Guitar
+Brand: Taylor
+
+Serial: 105
+Type: Electric Guitar
+Brand: Taylor
+
+Serial: 106
+Type: Electric Guitar
+Brand: Taylor
+
