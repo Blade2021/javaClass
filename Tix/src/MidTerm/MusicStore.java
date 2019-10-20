@@ -58,6 +58,7 @@ public class MusicStore {
 	
 	//Call printInfo method from appropriate class
 	public void printInstrument(int SerialNumber) {
+		//System.out.println("\n");
 		for(int indx = 0;indx < inventory.length; indx++) {
 			try {
 				if(inventory[indx].getSerialNumber() == SerialNumber) {
@@ -68,6 +69,8 @@ public class MusicStore {
 				// do nothing
 			}
 		}
+		
+		System.out.println("\n ------------------- \n"); //Print separator
 	}
 
 	public void addInventory() {
@@ -117,10 +120,22 @@ public class MusicStore {
 		
 		input.close();
 	}
-	/*
-	public void setAvailable(int SerialNumber) {
-		try {
-			inventory[]
+	
+	
+	public void setAvailable(int SerialNumber, boolean status) {
+		/*
+		 * @param SerialNumber This is the lookup ID of the instrument
+		 */
+		for(int indx = 0;indx < inventory.length; indx++) {
+			try {
+				if(inventory[indx].getSerialNumber() == SerialNumber) {
+					inventory[indx].setAvailable(status);
+				}
+			}
+			catch(Exception NullPointerException) {
+				// do nothing
+			}
 		}
-	}*/
+	}
+
 }
