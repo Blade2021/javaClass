@@ -9,15 +9,18 @@ public class Runner {
 		
 		//Bennington.addInventory();
 		
-		//Bennington.printInstrument();
-		//Bennington.setAvailable();
-		//Bennington.printInstrument();
+		Bennington.printInstrument();
+		Bennington.setAvailable();
+		Bennington.printInstrument();
 		
 		
 		Bennington.setAvailable(103, true);
 		Bennington.printInstrument(103);
 		
 		Bennington.writeFile();
+		
+		Bennington.play(12);
+		Bennington.play(102);
 	}
 
 }

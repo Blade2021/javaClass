@@ -3,7 +3,7 @@ package MidTerm;
 import java.util.Scanner;
 import java.io.*;
 
-public class MusicStore {
+public class MusicStore implements Playable{
 
 	private Instrument[] inventory;
 	private int storageAmount;
@@ -207,6 +207,32 @@ public class MusicStore {
 		/*catch(Exception e) {
 			System.out.println("Something terrible went wrong :( ");
 		}*/
+	}
+	
+	private int getArrayIndex(int SerialNumber) {
+		int indx;
+		for(indx = 0;indx < inventory.length; indx++) {
+			try {
+				if(inventory[indx].getSerialNumber() == SerialNumber) {
+					break;
+				}
+			}
+			catch(Exception NullPointerException) {
+				// do nothing
+			}
+		}
+		return indx;
+	}
+
+	public void play(int SerialNumber) {
+		try{
+			int index = getArrayIndex(SerialNumber);
+			String instrument = inventory[index].getType();
+			System.out.println(instrument + " being played");
+		}
+		catch(Exception ArrayIndexOutOfBoundsException) {
+			System.out.println("No data available");
+		}
 	}
 	
 }
