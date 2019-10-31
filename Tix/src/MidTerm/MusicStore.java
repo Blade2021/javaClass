@@ -204,9 +204,9 @@ public class MusicStore implements Playable{
 		catch(IOException e) {
 			e.printStackTrace();
 		}
-		/*catch(Exception e) {
+		catch(Exception e) {
 			System.out.println("Something terrible went wrong :( ");
-		}*/
+		}
 	}
 	
 	private int getArrayIndex(int SerialNumber) {
