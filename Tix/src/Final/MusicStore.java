@@ -1,6 +1,13 @@
+/**
+ * MusicStore adds inventory management for instruments
+ * @author Matt
+ */
+
+
 package Final;
 
 import java.util.Scanner;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
@@ -9,8 +16,18 @@ public class MusicStore implements Playable{
 	//private Instrument[] inventory;
 	private int storageAmount;
 	
+	/**
+	 * Instrument List Array for inventory
+	 */
 	List<Instrument> inventory = new ArrayList<Instrument>();
-
+	
+	public MusicStore() {
+	}
+	
+	/**
+	 * 
+	 * @param storageAmount Initialize array size on creation
+	 */
 	public MusicStore(int storageAmount) {
 		this.storageAmount = storageAmount;
 		//inventory = new Instrument[storageAmount];
@@ -19,37 +36,63 @@ public class MusicStore implements Playable{
 		}
 	}
 	
+	/**
+	 * Fill Inventory with guitars
+	 */
 	public void fillInventory() {
 		for(int indx = 0; indx < storageAmount; indx++) {
 			inventory.set(indx, new Guitar((100+indx),Brand.TAYLOR, "white",4));
 		}
 	}
 
-	//Fill inventory amount with instrument[Guitar]
+	/**
+	 * Fill inventory with guitars
+	 * @param start Index of start of loop to add guitars to inventory
+	 * @param end Index of end of loop to stop adding guitars to inventory
+	 */
 	public void fillInventoryGuitar(int start, int end) {
 		for(int indx = start; indx < end; indx++) {
 			try {
 				inventory.set(indx, new Guitar((100+indx),Brand.TAYLOR, "white",4));
 			}
 			catch(Exception ArrayIndexOutOfBoundsException) {
-				System.out.println("Array Index exceeded");
+				//System.out.println("Array Index exceeded");
+				try {
+					inventory.add(new Guitar((100+indx),Brand.TAYLOR, "white",4));
+				}
+				catch(Exception e) {
+					System.out.println("Something went wrong");
+				}
 			}
 		}
 	}
-
-	//Fill inventory amount with instrument[Electric Guitar]
+	
+	/**
+	 * Fill inventory with electric guitars
+	 * @param start Index of start of loop to add electric guitars to inventory
+	 * @param end Index of end of loop to stop adding electric guitars to inventory
+	 */
 	public void fillInventoryElectricGuitar(int start, int end) {		
 		for(int indx = start; indx < end; indx++) {
 			try {
 				inventory.set(indx, new ElectricGuitar((100+indx),Brand.TAYLOR, "white",4,'C'));
 			}
 			catch(Exception ArrayIndexOutOfBoundsException) {
-				System.out.println("Array Index exceeded");
+				//System.out.println("Array Index exceeded");
+				try {
+					inventory.add(new ElectricGuitar((100+indx),Brand.TAYLOR,"white",4,'C'));
+				}
+			
+				catch(Exception e) {
+					System.out.println("Something went wrong");
+				}
 			}
 		}
 	}
 
-	// Print ALL inventory
+	/**
+	 * Print all instruments in inventory
+	 */
 	public void printInstrumentALL() {
 		System.out.println("\n\nPRINTING INVENTORY:\n");
 		for(int indx = 0; indx < inventory.size(); indx++) {
@@ -63,7 +106,10 @@ public class MusicStore implements Playable{
 		}
 	}
 	
-	public void printInstrument() {
+	/**
+	 * Ask operator for what instrument to print
+	 */
+	public void printInstrument(){
 
 		Scanner input = new Scanner(System.in);
 		try {
@@ -79,7 +125,10 @@ public class MusicStore implements Playable{
 		}		
 	}
 	
-	//Call printInfo method from appropriate class
+	/**
+	 * Print a instrument of input
+	 * @param SerialNumber Serial Number of instrument in inventory.
+	 */
 	public void printInstrument(int SerialNumber) {
 		//System.out.println("\n");
 		for(int indx = 0;indx < inventory.size(); indx++) {
@@ -88,19 +137,26 @@ public class MusicStore implements Playable{
 					inventory.get(indx).printInfo();
 				}
 			}
-			catch(Exception NullPointerException) {
-				// do nothing
+			catch(Exception e) {
+				System.out.println("That instrument doesn't exist");
 			}
 		}
-		
 		System.out.println("\n ------------------- \n"); //Print separator
 	}
-
+	
+	/**
+	 * Add instruments to inventory through input process
+	 */
 	public void addInventory() {
 		int indx = 0;	
 		
 		Scanner input = new Scanner(System.in);
 		do {
+			indx = inventory.get(inventory.size()-1).getSerialNumber()+1;
+			//System.out.println(inventory.size());
+			
+			//System.out.println(inventory.get(1).getSerialNumber());
+			
 			//Scanner input = new Scanner(System.in);
 			System.out.println("What type of instrument are you adding?\n1 - Guitar or 2 - Elecric Guitar 0 - Exit");
 			try {
@@ -109,7 +165,7 @@ public class MusicStore implements Playable{
 				
 				if((inputType == 1) || (inputType == 2)) {
 					System.out.println("Input guitar brand:");
-					Brand inputBrand = Brand.valueOf(input.nextLine());
+					Brand inputBrand = Brand.valueOf(input.nextLine().toUpperCase());
 					
 					System.out.println("Input guitar color:");
 					String inputColor = input.nextLine();
@@ -122,9 +178,9 @@ public class MusicStore implements Playable{
 						System.out.println("Input guitar pickup type: [CHAR]");
 						char inputPickupType = input.nextLine().charAt(0);
 						
-						inventory.set(indx, new ElectricGuitar(indx+100,inputBrand,inputColor,inputStringCount,inputPickupType));
+						inventory.add(new ElectricGuitar(indx,inputBrand,inputColor,inputStringCount,inputPickupType));
 					} else {
-						inventory.set(indx, new Guitar(indx+100,inputBrand,inputColor,inputStringCount));
+						inventory.add(new Guitar(indx,inputBrand,inputColor,inputStringCount));
 					}
 					
 					indx++;
@@ -142,7 +198,9 @@ public class MusicStore implements Playable{
 		
 		//input.close();
 	}
-	
+	/**
+	 * Set instrument availability 
+	 */
 	public void setAvailable() {
 		Scanner input = new Scanner(System.in);
 		try {
@@ -168,7 +226,11 @@ public class MusicStore implements Playable{
 			//input.close();
 		}
 	}
-	
+	/**
+	 * Function to set availability of instrument in inventory
+	 * @param SerialNumber Serial number of instrument to set
+	 * @param status Boolean of if instrument is available
+	 */
 	public void setAvailable(int SerialNumber, boolean status) {
 		/*
 		 * @param SerialNumber This is the lookup ID of the instrument
@@ -184,7 +246,9 @@ public class MusicStore implements Playable{
 			}
 		}
 	}
-	
+	/**
+	 * Write inventory to a text file.
+	 */
 	public void writeFile() {
 		try {
 			File writeFile = new File("Inventory.txt");
@@ -214,7 +278,11 @@ public class MusicStore implements Playable{
 			System.out.println("Something terrible went wrong :( ");
 		}
 	}
-	
+	/**
+	 * Get array index of serial number
+	 * @param SerialNumber Serial number to check
+	 * @return Returns array index of found serial number
+	 */
 	private int getArrayIndex(int SerialNumber) {
 		int indx;
 		for(indx = 0;indx < inventory.size(); indx++) {
@@ -229,7 +297,9 @@ public class MusicStore implements Playable{
 		}
 		return indx;
 	}
-
+	/**
+	 * Demonstrate playing instrument
+	 */
 	public void play(int SerialNumber) {
 		try{
 			int index = getArrayIndex(SerialNumber);
@@ -240,14 +310,22 @@ public class MusicStore implements Playable{
 			System.out.println("No data available");
 		}
 	}
-	
+	/**
+	 * Get instrument object
+	 * @param SerialNumber Serial number of instrument
+	 * @return Instrument Object
+	 */
 	public Instrument getInstrument(int SerialNumber) {
 		int index = getArrayIndex(SerialNumber);
 		return inventory.get(index);
 	}
-	
+	/**
+	 * Remove instrument from inventory
+	 * @param SerialNumber Serial number instrument to remove
+	 */
 	public void removeInstrument(int SerialNumber) {
 		int index = getArrayIndex(SerialNumber);
 		inventory.remove(index);
 	}
+	
 }

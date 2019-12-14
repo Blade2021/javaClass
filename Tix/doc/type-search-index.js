@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"Final","l":"Brand"},{"p":"Final","l":"ElectricGuitar"},{"p":"Final","l":"GUIHWStarterCode"},{"p":"Final","l":"Guitar"},{"p":"Final","l":"Instrument"},{"p":"Final","l":"MusicStore"},{"p":"Final","l":"Playable"},{"p":"Final","l":"Runner"}]
